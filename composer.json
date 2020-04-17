@@ -1,0 +1,21 @@
+{
+  "name": "crystlbrd/mini3-controller-extensions",
+  "description": "Controller Extensions for the mini3 framwork",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "crystlbrd",
+      "email": "crystlbrd@bitkov.de"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "crystlbrd/values": "0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "crystlbrd\\ControllerExt\\": "src/"
+    }
+  }
+}
