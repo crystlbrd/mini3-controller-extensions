@@ -126,7 +126,7 @@ trait Twig
     protected function requireTwig(): void
     {
         // init Twig, if not already done
-        if (self::$_Twig !== null) {
+        if (self::$_Twig === null) {
             self::$_Twig = new Environment(
                 new FilesystemLoader($this->_SETTING_Twig_PathToTemplates),
                 ArrVal::merge(
