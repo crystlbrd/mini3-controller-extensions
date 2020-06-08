@@ -13,6 +13,12 @@
     "php": ">=7.1",
     "crystlbrd/values": "0.1.0"
   },
+  "require-dev": {
+    "twig/twig": "^3.0"
+  },
+  "suggest": {
+    "twig/twig": "Required, if you want to use the Twig Trait."
+  },
   "autoload": {
     "psr-4": {
       "crystlbrd\\ControllerExt\\": "src/"
