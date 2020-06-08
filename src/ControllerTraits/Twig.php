@@ -95,7 +95,7 @@ trait Twig
      * @param string $filename Filename
      * @param array $data Additional data
      * @param bool $echo Echo HTML?
-     * @return string|null
+     * @return string|void
      * @throws Exception
      */
     protected function render(string $filename, array $data = [], bool $echo = true): ?string
@@ -110,7 +110,7 @@ trait Twig
                 $this->requireTwig();
 
                 // render file
-                $html = $this->_Twig->render($file, $this->getTemplateData($data));
+                $html = self::$_Twig->render($file, $this->getTemplateData($data));
 
                 if (!$echo) return $html;
                 echo $html;
