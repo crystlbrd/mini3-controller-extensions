@@ -98,7 +98,7 @@ trait Twig
      * @return string|void
      * @throws Exception
      */
-    protected function render(string $filename, array $data = [], bool $echo = true): ?string
+    protected function render(string $filename, array $data = [], bool $echo = true)
     {
         try {
             // look for the file
