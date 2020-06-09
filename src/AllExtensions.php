@@ -4,6 +4,7 @@
 namespace crystlbrd\ControllerExt;
 
 
+use crystlbrd\ControllerExt\ControllerTraits\Database;
 use crystlbrd\ControllerExt\ControllerTraits\Router;
 use crystlbrd\ControllerExt\ControllerTraits\Twig;
 
@@ -15,4 +16,5 @@ class AllExtensions
 {
     use Router;
     use Twig;
+    use Database;
 }

@@ -14,10 +14,12 @@
     "crystlbrd/values": "0.1.0"
   },
   "require-dev": {
-    "twig/twig": "^3.0"
+    "twig/twig": "^3.0",
+    "crystlbrd/databasehandler": "dev-master"
   },
   "suggest": {
-    "twig/twig": "Required, if you want to use the Twig Trait."
+    "twig/twig": "Required, if you want to use the Twig Trait.",
+    "crystlbrd/databasehandler": "Required, if you want to use the Database Trait."
   },
   "autoload": {
     "psr-4": {
