@@ -45,7 +45,7 @@ trait Twig
     /**
      * @var array Template Variables
      */
-    protected static $_Hooks = [];
+    protected static $_Twig_Variables = [];
 
 
     /// METHODS
@@ -53,7 +53,7 @@ trait Twig
     /**
      * Defines default Twig variables
      */
-    protected function defineDefaultHooks(): void
+    protected function defineDefaultVariables(): void
     {
         /**
          * This method is a placeholder.
@@ -62,7 +62,7 @@ trait Twig
          * in your twig files.
          */
 
-        self::$_Hooks = [
+        self::$_Twig_Variables = [
             'mini' => [
                 'url' => URL
             ]
@@ -74,7 +74,7 @@ trait Twig
      */
     protected function getTemplateData(array $data = []): array
     {
-        return ArrVal::merge(self::$_Hooks, ['data' => $data]);
+        return ArrVal::merge(self::$_Twig_Variables, ['data' => $data]);
     }
 
     /**
@@ -137,7 +137,25 @@ trait Twig
                 )
             );
 
-            $this->defineDefaultHooks();
+            $this->defineDefaultVariables();
         }
+    }
+
+    /**
+     * Defines a template variable outside of the data-Namespace
+     * @param string $name Namespace
+     * @param mixed $value Data
+     */
+    protected function setVar(string $name, $value): void
+    {
+        // Define namespace
+        $chain = explode(' > ', $name);
+        $level = &self::$_Twig_Variables;
+        for ($i = 0; $i < count($chain); $i++) {
+            $level = &$level[$chain[$i]]; // set reference (&) in order to change the value of the object
+        }
+
+        // save data
+        $level = $value;
     }
 }
