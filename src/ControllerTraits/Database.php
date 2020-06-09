@@ -7,6 +7,12 @@ namespace crystlbrd\ControllerExt\ControllerTraits;
 use crystlbrd\DatabaseHandler\DatabaseHandler;
 use crystlbrd\DatabaseHandler\Exceptions\DatabaseHandlerException;
 
+/**
+ * Trait Database
+ * Manages database connections
+ * Requires: crystlbrd/databasehandler
+ * @package crystlbrd\ControllerExt\ControllerTraits
+ */
 trait Database
 {
     /// SETTINGS

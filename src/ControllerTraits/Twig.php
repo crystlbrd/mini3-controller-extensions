@@ -11,6 +11,7 @@ use Twig\Loader\FilesystemLoader;
 /**
  * Trait Twig
  * Handles rendering of Twig Templates
+ * Requires: twig/twig
  * @package crystlbrd\ControllerExt\ControllerTraits
  */
 trait Twig
