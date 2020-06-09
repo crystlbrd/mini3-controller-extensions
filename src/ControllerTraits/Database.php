@@ -50,18 +50,18 @@ trait Database
      */
     protected function requireConnection(string $connName): void
     {
-        // DatabaseHandler initialisieren
+        // Init DatabaseHandler
         $this->initDatabaseHandler();
 
-        // Verbindung suchen
+        // Look for connection
         if (
             isset($this->_SETTING_DatabaseConnections[$connName])
             && !in_array($connName, $this->_CACHE_ConnectedDatabaseConnections)
         ) {
-            // Datenbankverbindung aufbauen
+            // Connect to database
             $this->_DatabaseHandler->addConnection($connName, $this->_SETTING_DatabaseConnections[$connName]);
 
-            // Aktive Verbindung merken, um sie noch nochmal aufzubauen
+            // Cache connection
             $this->_CACHE_ConnectedDatabaseConnections[] = $connName;
         }
     }
