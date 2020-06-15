@@ -119,7 +119,7 @@ trait Router
         // add GET parameters
         $i = 0;
         foreach ($get as $k => $v) {
-            $url .= ($i ? '&' : '?') . urlencode($k) . '=' . urlencode($v);
+            $url .= ($i ? '&' : '?') . (!is_int($k) ? urlencode($k) . '=' : '') . urlencode($v);
             $i++;
         }
 
