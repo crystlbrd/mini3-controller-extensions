@@ -75,6 +75,16 @@ trait Router
     }
 
     /**
+     * Relocates to the last cached location
+     * @param array $get additional GET parameter
+     * @param array $options additional options
+     */
+    protected function goBack(array $get = [], array $options = []): void
+    {
+        $this->relocateTo($this->getLastCachedLocation(), $get, $options);
+    }
+
+    /**
      * Relocates the client and stops the script
      * @param string $url
      * @param int $status
