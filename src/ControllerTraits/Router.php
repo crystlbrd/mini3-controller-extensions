@@ -81,7 +81,7 @@ trait Router
      */
     protected function goBack(array $get = [], array $options = []): void
     {
-        $this->relocateTo($this->getLastCachedLocation(), $get, $options);
+        $this->relocateTo($this->getLastCachedLocation() ?: '', $get, $options);
     }
 
     /**
