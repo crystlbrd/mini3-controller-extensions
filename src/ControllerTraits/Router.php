@@ -13,7 +13,66 @@ use crystlbrd\Values\ArrVal;
  */
 trait Router
 {
+    /// SETTINGS
+
+    /**
+     * @var int Defines how many URL should be cached per session
+     */
+    protected $_SETTING_Router_maxCachedLocations = 5;
+
+
     /// METHODS
+
+    /**
+     * Caches the current URL
+     */
+    protected function cacheCurrentLocation(): void
+    {
+        $this->cacheLocation($_GET['url']);
+    }
+
+    /**
+     * Saves an URL to the cache
+     * @param string $url
+     */
+    protected function cacheLocation(string $url): void
+    {
+        // Don't cache the same location twice
+        if ($url != $this->getLastCachedLocation()) {
+            // Get the current cache
+            $cache = $this->getCache();
+
+            // Delete oldest entries, if cache is full
+            if (count($cache) >= $this->_SETTING_Router_maxCachedLocations) {
+                unset($cache[0]);
+            }
+
+            // Save URL to cache
+            $cache[] = $url;
+
+            // Save cache to session
+            $this->setCache(array_values($cache));
+        }
+    }
+
+    /**
+     * Returns the current cache
+     * @return array
+     */
+    protected function getCache(): array
+    {
+        return (isset($_SESSION['mini']['router']['cache']) ? $_SESSION['mini']['router']['cache'] : []);
+    }
+
+    /**
+     * Returns the last cached URL
+     * @return string|null
+     */
+    protected function getLastCachedLocation(): ?string
+    {
+        $cache = $this->getCache();
+        return (isset($cache[0]) ? $cache[0] : null);
+    }
 
     /**
      * Relocates the client and stops the script
@@ -71,5 +130,14 @@ trait Router
     protected function relocateToHome(array $get = [], string $anchor = null): void
     {
         $this->relocateTo('', $get, ['anchor' => $anchor]);
+    }
+
+    /**
+     * Sets the cache
+     * @param array $cache
+     */
+    protected function setCache(array $cache): void
+    {
+        $_SESSION['mini']['router']['cache'] = $cache;
     }
 }
