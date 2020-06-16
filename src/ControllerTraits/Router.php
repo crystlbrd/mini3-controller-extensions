@@ -70,7 +70,7 @@ trait Router
      */
     protected function getLastCachedLocation(): string
     {
-        $cache = $this->getCache();
+        $cache = array_reverse($this->getCache());
         return (isset($cache[0]) ? $cache[0] : '');
     }
 
