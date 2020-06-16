@@ -66,12 +66,12 @@ trait Router
 
     /**
      * Returns the last cached URL
-     * @return string|null
+     * @return string
      */
-    protected function getLastCachedLocation(): ?string
+    protected function getLastCachedLocation(): string
     {
         $cache = $this->getCache();
-        return (isset($cache[0]) ? $cache[0] : null);
+        return (isset($cache[0]) ? $cache[0] : '');
     }
 
     /**
