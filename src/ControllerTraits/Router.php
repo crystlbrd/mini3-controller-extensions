@@ -106,6 +106,7 @@ trait Router
         // OPTIONS
 
         $opt = ArrVal::merge([
+            'base' => URL,      // Baselink
             'anchor' => null,   // URL anchor (/some/url#anchor)
             'status' => 302     // HTTP Status for relocating (default: 302)
         ], $options);
@@ -114,7 +115,7 @@ trait Router
         // LOGIC
 
         // base url
-        $url = URL . $url;
+        $url = $opt['base'] . $url;
 
         // add GET parameters
         $i = 0;
