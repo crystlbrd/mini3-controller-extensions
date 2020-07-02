@@ -66,12 +66,22 @@ trait Router
 
     /**
      * Returns the last cached URL
+     * @param bool $skipCurrent If the last cached location is the current location, it will be skipped
+     * @param int $offset Cache offset
      * @return string
      */
-    protected function getLastCachedLocation(): string
+    protected function getLastCachedLocation(bool $skipCurrent = false, int $offset = 0): string
     {
         $cache = array_reverse($this->getCache());
-        return (isset($cache[0]) ? $cache[0] : '');
+        if (isset($cache[$offset])) {
+            if ($skipCurrent && $cache[$offset] == $_GET['url']) {
+                return $this->getLastCachedLocation($skipCurrent, $offset + 1);
+            } else {
+                return $cache[$offset];
+            }
+        } else {
+            return '';
+        }
     }
 
     /**
@@ -81,7 +91,7 @@ trait Router
      */
     protected function goBack(array $get = [], array $options = []): void
     {
-        $this->relocateTo($this->getLastCachedLocation() ?: '', $get, $options);
+        $this->relocateTo($this->getLastCachedLocation(true) ?: '', $get, $options);
     }
 
     /**
