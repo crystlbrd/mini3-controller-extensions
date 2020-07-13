@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=7.1",
-    "crystlbrd/values": "dev-develop"
+    "crystlbrd/values": "^u0.1"
   },
   "require-dev": {
     "twig/twig": "^3.0",
